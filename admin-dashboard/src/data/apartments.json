@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Modern Apartment",
+    "city": "Paris",
+    "price": 2100,
+    "available": true
+  },
+  {
+    "id": 2,
+    "title": "Small Studio",
+    "city": "London",
+    "price": 1500,
+    "available": false
+  },
+  {
+    "id": 3,
+    "title": "Luxury Flat",
+    "city": "Amsterdam",
+    "price": 2500,
+    "available": true
+  },
+    {
+        "id": 4,
+        "title": "Cozy Loft",
+        "city": "Berlin",
+        "price": 1800,
+        "available": true
+    },
+    {
+        "id": 5,
+        "title": "Spacious Condo",
+        "city": "Madrid",
+        "price": 2200,
+        "available": false
+    },
+    {
+        "id": 6,
+        "title": "Charming Studio",
+        "city": "Rome",
+        "price": 1600,
+        "available": true
+    },
+    {
+        "id": 7,
+        "title": "Elegant Apartment",
+        "city": "Vienna",
+        "price": 2300,
+        "available": true
+    },
+    {
+        "id": 8,
+        "title": "Budget Room",
+        "city": "Prague",
+        "price": 1200,
+        "available": false
+    }
+]
