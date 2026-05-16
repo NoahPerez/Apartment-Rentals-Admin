@@ -1,13 +1,26 @@
-import { Routes, Route } from "react-router"
+import { useState } from "react"
+import { Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Sidebar from "./components/Sidebar"
 import Footer from "./components/Footer"
+import DashboardPage from "./pages/DashboardPage"
+import AboutPage from "./pages/AboutPage"
+import ApartmentDetailsPage from "./pages/ApartmentDetailsPage"
+import NotFoundPage from "./pages/NotFoundPage"
+import apartmentsData from "./data/apartments.json"
 import "./index.css"
 
-import HomePage from "./pages/HomePage"
-import AboutPage from "./pages/AboutPage"
-
 function App() {
+  const [apartments, setApartments] = useState(apartmentsData)
+
+  function deleteApartment(id) {
+    const filteredApartments = apartments.filter((apartment) => {
+      return apartment.id !== id
+    })
+
+    setApartments(filteredApartments)
+  }
+
   return (
     <div className="app-container">
       <Navbar />
@@ -17,8 +30,24 @@ function App() {
 
         <main className="page-content">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/"
+              element={
+                <DashboardPage
+                  apartments={apartments}
+                  deleteApartment={deleteApartment}
+                />
+              }
+            />
+
             <Route path="/about" element={<AboutPage />} />
+
+            <Route
+              path="/apartments/:apartmentId"
+              element={<ApartmentDetailsPage apartments={apartments} />}
+            />
+
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
       </div>
