@@ -1,9 +1,10 @@
 import { Link, useParams } from "react-router-dom"
+import ApartmentForm from "../components/ApartmentForm"
 
 function ApartmentDetailsPage(props) {
   const { apartmentId } = useParams()
 
-  const apartmentFound = props.apartments.find((apartment) => {
+  const apartmentFound = props.apartments.find(apartment => {
     return apartment.id === Number(apartmentId)
   })
 
@@ -18,16 +19,32 @@ function ApartmentDetailsPage(props) {
 
   return (
     <div>
-      <h2>{apartmentFound.title}</h2>
-
+      <h2>{apartmentFound.name}</h2>
+      <img
+        className="picture-size"
+        src={apartmentFound.picture_url}
+        alt={apartmentFound.name}
+      />
       <p>ID: {apartmentFound.id}</p>
-      <p>City: {apartmentFound.city}</p>
-      <p>Price: {apartmentFound.price} €</p>
+      <p>Location: {apartmentFound.neighbourhood || "Unknown"}</p>
+      <p>Price: {apartmentFound.price || "N/A"}</p>
       <p>
-        Status: {apartmentFound.available ? "✅ Available" : "❌ Unavailable"}
+        Status:{" "}
+        {apartmentFound.has_availability ? "✅ Available" : "❌ Unavailable"}
       </p>
 
-      <Link to="/">Back to Dashboard</Link>
+      <ApartmentForm
+        key={apartmentFound.id}
+        initialData={apartmentFound}
+        onSubmit={props.updateApartment}
+        submitLabel="Update apartment"
+      />
+
+      <div className="card-buttons">
+        <Link to="/">
+          <button>Back to Dashboard</button>
+        </Link>
+      </div>
     </div>
   )
 }

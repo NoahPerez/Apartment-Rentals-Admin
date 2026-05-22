@@ -6,20 +6,31 @@ function ApartmentCard(props) {
 
   return (
     <div className="card">
-      <h3>{apartment.title}</h3>
+      <img
+        className="picture-size"
+        src={apartment.picture_url}
+        alt={apartment.name}
+      />
 
-      <p>City: {apartment.city}</p>
-      <p>Price: {apartment.price} €</p>
-      <p>
-        Status: {apartment.available ? "✅ Available" : "❌ Unavailable"}
-      </p>
+      <div className="card-content">
+        <h3 className="truncate">{apartment.name}</h3>
 
-      <div className="card-buttons">
-        <Link to={`/apartments/${apartment.id}`}>Details</Link>
+        <div className="card-info">
+          <span>
+            <strong>City</strong> {apartment.neighbourhood}
+          </span>
+          <strong>{apartment.price}</strong>
+        </div>
 
-        <button onClick={() => deleteApartment(apartment.id)}>
-          Delete
-        </button>
+        <p className="status">
+          {apartment.has_availability ? "✅ Available" : "❌ Unavailable"}
+        </p>
+
+        <div className="card-buttons">
+          <Link to={`/apartments/${apartment.id}`}>Details</Link>
+
+          <button onClick={() => deleteApartment(apartment.id)}>Delete</button>
+        </div>
       </div>
     </div>
   )
