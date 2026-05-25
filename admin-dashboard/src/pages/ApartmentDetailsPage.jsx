@@ -10,40 +10,65 @@ function ApartmentDetailsPage(props) {
 
   if (!apartmentFound) {
     return (
-      <div>
-        <h2>Apartment not found</h2>
-        <Link to="/">Back to Dashboard</Link>
+      <div className="details-page">
+        <div className="details-card">
+          <h2>Apartment not found</h2>
+          <p>The apartment you are looking for does not exist.</p>
+
+          <div className="details-actions">
+            <Link to="/" className="back-link">
+              Back to Dashboard
+            </Link>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div>
-      <h2>{apartmentFound.name}</h2>
-      <img
-        className="picture-size"
-        src={apartmentFound.picture_url}
-        alt={apartmentFound.name}
-      />
-      <p>ID: {apartmentFound.id}</p>
-      <p>Location: {apartmentFound.neighbourhood || "Unknown"}</p>
-      <p>Price: {apartmentFound.price || "N/A"}</p>
-      <p>
-        Status:{" "}
-        {apartmentFound.has_availability ? "✅ Available" : "❌ Unavailable"}
-      </p>
+    <div className="details-page">
+      <div className="details-card">
+        <h2 className="details-title">{apartmentFound.name}</h2>
 
-      <ApartmentForm
-        key={apartmentFound.id}
-        initialData={apartmentFound}
-        onSubmit={props.updateApartment}
-        submitLabel="Update apartment"
-      />
+        <img
+          className="details-image"
+          src={apartmentFound.picture_url}
+          alt={apartmentFound.name}
+        />
 
-      <div className="card-buttons">
-        <Link to="/">
-          <button>Back to Dashboard</button>
-        </Link>
+        <div className="details-info">
+          <p>
+            <strong>ID:</strong> {apartmentFound.id}
+          </p>
+          <p>
+            <strong>Location:</strong>{" "}
+            {apartmentFound.neighbourhood || "Unknown"}
+          </p>
+          <p>
+            <strong>Price:</strong> {apartmentFound.price || "N/A"}
+          </p>
+          <p>
+            <strong>Status:</strong>{" "}
+            {apartmentFound.has_availability
+              ? "✅ Available"
+              : "❌ Unavailable"}
+          </p>
+        </div>
+
+        <div className="details-actions">
+          <Link to="/" className="back-link">
+            Back to Dashboard
+          </Link>
+        </div>
+      </div>
+
+      <div className="update-form-box">
+        <ApartmentForm
+          key={apartmentFound.id}
+          initialData={apartmentFound}
+          onSubmit={props.updateApartment}
+          submitLabel="Update apartment"
+        />
       </div>
     </div>
   )
